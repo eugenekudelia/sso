@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
 class Kohana_SSO_Driver_OAuth2_Yandex extends SSO_Driver_OAuth2 {
 

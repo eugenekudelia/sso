@@ -1,3 +1,3 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
-class SSO_Exception extends Kohana_SSO_Exception {}
+class SSO_Exception extends Kohana_Exception {}

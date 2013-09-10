@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
 /**
  * OpenID module required.
@@ -74,6 +74,6 @@ abstract class Kohana_SSO_Driver_OpenID extends SSO_Driver {
 			return FALSE;
 		}
 		$user_data = $this->_get_user_data($this->_openid->attributes());
-		return $this->_auth->orm()->get_user($user_data);
+		return $this->_auth->sso_auth()->get_user($user_data);
 	}
 }
