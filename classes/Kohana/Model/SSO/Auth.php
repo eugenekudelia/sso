@@ -111,7 +111,11 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	{
 		//if no id was passed use the current users id
 		$session = Session::instance(Session::$default);
-		$id OR $id = $session->get(Kohana::$config->load('sso.user_key')->id);
+		if ($id === NULL)
+		{
+			$session_user = $session->get(Kohana::$config->load('sso.user_key'));
+			$id = $session_user ? $session_user->id : 0;
+		}
 
 		$this->where($this->tables['users'].'.id', '=', $id)
 			->limit(1)
@@ -120,7 +124,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		return $this;
 	}
 
-	protected function _save_user(array $data)
+	public function _save_user(array $data)
 	{
 		$data = $this->_filter_data($this->tables['users'], $data);
 
@@ -245,7 +249,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		}
 		while(count(
 			DB::select()
-				->from($this->_table_name)
+				->from($this->tables['tokens'])
 				->where('token', '=', $token)
 				->execute()
 			) > 0
