@@ -10,7 +10,7 @@ abstract class Kohana_SSO_Driver_OpenID extends SSO_Driver {
 	 * @var OpenID
 	 */
 	protected $_openid;
-	protected $_identity_key = 'auth_openid_id';
+	protected $_identity_key = 'sso_openid_id';
 	protected $_identity;
 
 	protected function _get_identity($id = NULL)
