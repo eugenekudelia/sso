@@ -15,7 +15,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	/**
 	 * Token object
 	 */
-	protected $_token = FALSE;
+	protected $_token = NULL;
 
 
 	public function users()
@@ -259,15 +259,15 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 
 	public function generate($lifetime)
 	{
-		$token = new stdClass;
-		$token->expires = time() + $lifetime;
-		$token->token = $this->_generate_token_value();
+		is_object($this->_token) OR $this->_token = new stdClass;
+		$this->_token->expires = time() + $lifetime;
+		$this->_token->token = $this->_generate_token_value();
 
-		if ($this->_token)
+		if (isset($this->_token->id))
 		{
 			// save new token value & timestamp
-			$data['expires'] = $this->_token->expires = $token->expires;
-			$data['token'] = $this->_token->token = $token->token;
+			$data['expires'] = $this->_token->expires;
+			$data['token'] = $this->_token->token;
 
 			$result = DB::update($this->tables['tokens'])
 						->set($data)
@@ -279,10 +279,10 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		else
 		{
 			// this is a new token, so we dont need to save it (yet)
-			$token->user_agent = sha1(Request::$user_agent);
+			$this->_token->user_agent = sha1(Request::$user_agent);
 		}
 
-		return $token;
+		return $this->_token;
 	}
 
 	public function token_save($token)
@@ -291,7 +291,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		{
 			$_token = (array) $token;
 			unset($_token['id']);
-			unset($_token['user_id']);
+			unset($_token['user']);
 			$result = DB::update($this->tables['tokens'])
 						->set($_token)
 						->where('id', '=', $token->id)
