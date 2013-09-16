@@ -233,6 +233,8 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 			return FALSE;
 		}
 		$this->_token->user = $user->current();
+
+		return $this->_token;
 	}
 
 	public function is_valid($token)
