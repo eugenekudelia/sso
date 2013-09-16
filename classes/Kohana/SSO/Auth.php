@@ -63,7 +63,8 @@ abstract class Kohana_SSO_Auth implements Interface_SSO_Auth {
 			$user = $this
 				->where('service_id', '=', $data['service_id'])
 				->where('service_type', '=', $data['service_type'])
-				->user()
+				->limit(1)
+				->users()
 				->row();
 
 			// if user not found, save user

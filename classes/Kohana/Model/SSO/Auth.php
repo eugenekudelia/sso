@@ -110,10 +110,9 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	public function user($id = NULL)
 	{
 		//if no id was passed use the current users id
-		$session = Session::instance(Session::$default);
 		if ($id === NULL)
 		{
-			$session_user = $session->get(Kohana::$config->load('sso.user_key'));
+			$session_user = Session::instance()->get(Kohana::$config->load('sso.user_key'));
 			$id = $session_user ? $session_user->id : 0;
 		}
 
@@ -290,9 +289,9 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	{
 		if (isset($token->id))
 		{
-			$_token = $token;
-			unset($_token->id);
-			unset($_token->user_id);
+			$_token = (array) $token;
+			unset($_token['id']);
+			unset($_token['user_id']);
 			$result = DB::update($this->tables['tokens'])
 						->set($_token)
 						->where('id', '=', $token->id)
