@@ -7,5 +7,7 @@ return array(
 	'user_key'      => 'sso_user',
 	'driver_key'    => 'sso_driver',
 	'autologin_key' => 'sso_autologin',
-	'forced_key'    => 'sso_forced'
+	'forced_key'    => 'sso_forced',
+	
+	'openid_key'    => 'openid_original_identity'
 );

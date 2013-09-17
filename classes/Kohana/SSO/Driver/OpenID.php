@@ -55,6 +55,12 @@ abstract class Kohana_SSO_Driver_OpenID extends SSO_Driver {
 		$this->_identity = $this->_get_identity($id);
 		if ($user = $this->get_user())
 		{
+			if ( ! Cookie::get($this->_openid->identity_key()))
+			{
+				$openid_key = Session::instance()->get(Kohana::$config->load('sso.openid_key'));
+				Cookie::set($this->_openid->identity_key(), $openid_key);
+			}
+
 			Cookie::set($this->_identity_key, $this->_identity);
 			$this->complete_login();
 		}
