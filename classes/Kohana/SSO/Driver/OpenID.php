@@ -65,6 +65,7 @@ abstract class Kohana_SSO_Driver_OpenID extends SSO_Driver {
 	public function logout()
 	{
 		Cookie::delete($this->_identity_key);
+		Cookie::delete($this->_openid->identity_key());
 	}
 
 	public function get_user()

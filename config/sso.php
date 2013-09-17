@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
-	//'orm'         => 'ORM',
 	'lifetime'    => 1209600, // 2 weeks
 	'active_user' => TRUE,    // user doesnt require activation
 

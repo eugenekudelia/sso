@@ -10,20 +10,12 @@ abstract class Kohana_SSO_Auth implements Interface_SSO_Auth {
 	/**
 	 * __construct
 	 *
-	 * @return void
-	 * @author Ben
-	 * @kohana Eugene Kudelia
+	 * @return SSO_Auth_Model
+	 * @author Eugene Kudelia
 	 */
 	public function __construct()
 	{
-		// Create Ion Auth model instance
 		$this->sso_auth_model = Model::factory('SSO_Auth');
-
-		//auto-login the user if they are remembered
-		//if ( ! $this->logged_in() AND Cookie::get('identity') AND Cookie::get('remember_code'))
-		//{
-		//	$this->ion_auth_model->login_remembered_user();
-		//}
 	}
 
 	/**
@@ -41,8 +33,8 @@ abstract class Kohana_SSO_Auth implements Interface_SSO_Auth {
 	}
 
 	/**
-	 * @param  mixed  $data  user data (Array) or user ID (int) or ORM object
-	 * @return Model_Auth_Data
+	 * @param  mixed  $data  user data (Array) or user ID (int) or SSO_Auth object
+	 * @return user data object
 	 */
 	public function get_user($data)
 	{
