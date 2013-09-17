@@ -121,11 +121,9 @@ abstract class Kohana_SSO_Auth implements Interface_SSO_Auth {
 
 		if ($token AND isset($token->id))
 		{
-			if (isset($token->user))
-			{
-				unset($token->user);
-			}
-			return $this->token_delete($token->id);
+			$return = $this->token_delete($token->id);
+			unset($token);
+			return $return;
 		}
 
 		return FALSE;

@@ -320,6 +320,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 					->where('id', '=', $id)
 					->execute();
 
+		$this->_token = NULL;
 		return $result > 0;
 	}
 
