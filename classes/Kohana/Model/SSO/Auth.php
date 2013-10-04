@@ -1,5 +1,16 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * SSO :: Model_SSO_Auth extends Model_Common
+ * 
+ * Query Builder port of SSO ORM
+ * by Ivan Brotkin <https://github.com/biakaveron/sso>
+ *
+ * @package    Kohana/SSO
+ * @category   Models
+ * @author     Eugene Kudelia <https://github.com/eugenekudelia/sso>
+ * @copyright  (c) 2013 Eugene Kudelia
+ * @license    MIT License
+ */
 class Kohana_Model_SSO_Auth extends Model_Common {
 
 	/**

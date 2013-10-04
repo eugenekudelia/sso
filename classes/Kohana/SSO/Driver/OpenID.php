@@ -1,8 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
 /**
+ * SSO Driver OpenID
+ * 
+ * @package    Kohana/SSO
+ * @category   Drivers
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ * @fork       Eugene Kudelia <https://github.com/eugenekudelia/sso>
+ * 
  * OpenID module required.
- * @link https://github.com/biakaveron/openid
+ * @link https://github.com/eugenekudelia/openid
  */
 abstract class Kohana_SSO_Driver_OpenID extends SSO_Driver {
 

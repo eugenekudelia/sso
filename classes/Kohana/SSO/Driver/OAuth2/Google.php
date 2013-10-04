@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * SSO Driver OAuth2 Google
+ * 
+ * @package    Kohana/SSO
+ * @category   Drivers
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ */
 abstract class Kohana_SSO_Driver_Oauth2_Google extends SSO_Driver_OAuth2 {
 
 	protected $_provider = 'Google';

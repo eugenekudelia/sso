@@ -1,5 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * SSO Driver OAuth2 Github
+ * 
+ * @package    Kohana/SSO
+ * @category   Drivers
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ */
 class Kohana_SSO_Driver_OAuth2_Github extends SSO_Driver_OAuth2 {
 
 	protected $_provider = 'Github';

@@ -1,8 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
 /**
- * OAuth module required
- * @link https://github.com/kohana/oauth
+ * SSO Driver OAuth2
+ * 
+ * @package    Kohana/SSO
+ * @category   Drivers
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ * @fork       Eugene Kudelia <https://github.com/eugenekudelia/sso>
+ * 
+ * OAuth module required.
+ * @link https://github.com/eugenekudelia/oauth
  */
 abstract class Kohana_SSO_Driver_OAuth2 extends SSO_Driver {
 	/**

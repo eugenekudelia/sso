@@ -1,5 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * SSO Auth
+ * 
+ * @package    Kohana/SSO
+ * @category   Base
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ * @fork       Eugene Kudelia <https://github.com/eugenekudelia/sso>
+ */
 abstract class Kohana_SSO_Auth implements Interface_SSO_Auth {
 
 	/**

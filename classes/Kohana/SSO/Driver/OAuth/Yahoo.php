@@ -1,5 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * SSO Driver OAuth Yahoo
+ * 
+ * @package    Kohana/SSO
+ * @category   Drivers
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ */
 abstract class Kohana_SSO_Driver_OAuth_Yahoo extends SSO_Driver_OAuth {
 
 	protected $_provider = 'Yahoo';

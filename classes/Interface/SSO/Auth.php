@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @package    Kohana/SSO
+ * @category   Base
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ */
 interface Interface_SSO_Auth {
 
 	function get_user($data);

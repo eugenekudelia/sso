@@ -1,5 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * SSO Driver
+ * 
+ * @package    Kohana/SSO
+ * @category   Base
+ * @author     Ivan Brotkin <https://github.com/biakaveron/sso>
+ * @fork       Eugene Kudelia <https://github.com/eugenekudelia/sso>
+ */
 abstract class Kohana_SSO_Driver {
 
 	protected $_provider = FALSE;
