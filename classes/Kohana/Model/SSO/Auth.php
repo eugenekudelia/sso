@@ -18,7 +18,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	 *
 	 * @var array
 	 */
-	protected $tables	= array(
+	protected $_tables	= array(
 		'users'				=> 'sso_users',
 		'tokens'			=> 'sso_tokens'
 	);
@@ -32,7 +32,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 	public function users()
 	{
 		// Database Query Builder object: $this->_query
-		$this->_query($this->tables['users']);
+		$this->_query($this->_tables['users']);
 
 		// Database Query Builder limitations and ordering
 		$this->_query_format();
@@ -49,7 +49,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 			$id = $session_user ? $session_user->id : 0;
 		}
 
-		$this->where($this->tables['users'].'.id', '=', $id)
+		$this->where($this->_tables['users'].'.id', '=', $id)
 			->limit(1)
 			->users();
 
@@ -58,7 +58,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 
 	public function _save_user(array $data)
 	{
-		$data = $this->_filter_data($this->tables['users'], $data);
+		$data = $this->_filter_data($this->_tables['users'], $data);
 
 		$user = new stdClass;
 		foreach ($data as $key => $val)
@@ -71,7 +71,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		$columns[] = 'is_active';
 		$values[] = $is_active = (bool) Kohana::$config->load('sso.active_user');
 
-		list($id, $rows) = DB::insert($this->tables['users'])
+		list($id, $rows) = DB::insert($this->_tables['users'])
 								->columns($columns)
 								->values($values)
 								->execute();
@@ -142,7 +142,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		}
 
 		$token = DB::select()
-					->from($this->tables['tokens'])
+					->from($this->_tables['tokens'])
 					->where('token', '=', $token)
 		            ->limit(1)
 					->as_object()
@@ -155,7 +155,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		$this->_token = $token->current();
 
 		$user = DB::select()
-					->from($this->tables['users'])
+					->from($this->_tables['users'])
 					->where('id', '=', $this->_token->user_id)
 		            ->limit(1)
 					->as_object()
@@ -183,7 +183,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		}
 		while(count(
 			DB::select()
-				->from($this->tables['tokens'])
+				->from($this->_tables['tokens'])
 				->where('token', '=', $token)
 				->execute()
 			) > 0
@@ -204,7 +204,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 			$data['expires'] = $this->_token->expires;
 			$data['token'] = $this->_token->token;
 
-			$result = DB::update($this->tables['tokens'])
+			$result = DB::update($this->_tables['tokens'])
 						->set($data)
 						->where('id', '=', $this->_token->id)
 						->execute();
@@ -227,7 +227,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 			$_token = (array) $token;
 			unset($_token['id']);
 			unset($_token['user']);
-			$result = DB::update($this->tables['tokens'])
+			$result = DB::update($this->_tables['tokens'])
 						->set($_token)
 						->where('id', '=', $token->id)
 						->execute();
@@ -238,7 +238,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 		{
 			$columns = array_keys((array) $token);
 			$values = array_values((array) $token);
-			list($id, $rows) = DB::insert($this->tables['tokens'])
+			list($id, $rows) = DB::insert($this->_tables['tokens'])
 								->columns($columns)
 								->values($values)
 								->execute();
@@ -249,7 +249,7 @@ class Kohana_Model_SSO_Auth extends Model_Common {
 
 	public function token_delete($id)
 	{
-		$result = DB::delete($this->tables['tokens'])
+		$result = DB::delete($this->_tables['tokens'])
 					->where('id', '=', $id)
 					->execute();
 
